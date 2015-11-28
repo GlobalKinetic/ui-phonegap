@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" class="manywho" style="height: 100%">
+<head>
+	<meta charset="utf-8" />
+    <meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+	<title>ManyWho</title>
+	<style>
+		.mw-bs .wait-container {
+			position: relative;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			min-height: 500px;
+			z-index: 1100;
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+
+		.mw-bs .wait-message {
+			position: relative;
+			text-align: center;
+			margin-top: 1em;
+			display: block;
+			top: 40%;
+			font-size: 2em;
+			padding: 0 2em;
+		}
+
+		/* outer */
+		.mw-bs .wait-spinner {
+			display: block;
+			position: relative;
+			left: 50%;
+			width: 150px;
+			height: 150px;
+			margin: 200px 0 0 -75px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #268AAF;
+			-webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+			animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+		}
+
+		/* middle */
+		.mw-bs .wait-spinner:before {
+			content: "";
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			right: 5px;
+			bottom: 5px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #31B2E2;
+			-webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+			animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+		}
+
+		/* inner */
+		.mw-bs .wait-spinner:after {
+			content: "";
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			right: 15px;
+			bottom: 15px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #154E62;
+			-webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+			animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+		}
+
+		@-webkit-keyframes spin {
+			0%   {
+				-webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+				-ms-transform: rotate(0deg);  /* IE 9 */
+				transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+			}
+			100% {
+				-webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+				-ms-transform: rotate(360deg);  /* IE 9 */
+				transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+			}
+		}
+		@keyframes spin {
+			0%   {
+				-webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+				-ms-transform: rotate(0deg);  /* IE 9 */
+				transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+			}
+			100% {
+				-webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+				-ms-transform: rotate(360deg);  /* IE 9 */
+				transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+			}
+		}
+	</style>
+</head>
+<body style="height: 100%">
+<div id="manywho">
+	<div id="loader" class="mw-bs" style="width: 100%; height: 100%;">
+		<div class="wait-container">
+			<div class="wait-spinner"></div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="manywho/runtime/css/mw-bootstrap.css" />
+<link rel="stylesheet" href="manywho/runtime/css/themes/mw-yeti.css" id="theme" />
+
+<link rel="stylesheet" href="manywho/runtime/css/lib/react-select.css" />
+<link rel="stylesheet" href="manywho/runtime/css/lib/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" href="manywho/runtime/css/lib/jquery.textcomplete.css" />
+<link rel="stylesheet" href="manywho/runtime/css/containers.css" />
+<link rel="stylesheet" href="manywho/runtime/css/select.css" />
+<link rel="stylesheet" href="manywho/runtime/css/textarea.css" />
+<link rel="stylesheet" href="manywho/runtime/css/table.css" />
+<link rel="stylesheet" href="manywho/runtime/css/input.css" />
+<link rel="stylesheet" href="manywho/runtime/css/outcome.css" />
+<link rel="stylesheet" href="manywho/runtime/css/loading.css" />
+<link rel="stylesheet" href="manywho/runtime/css/modal.css" />
+<link rel="stylesheet" href="manywho/runtime/css/group.css" />
+<link rel="stylesheet" href="manywho/runtime/css/pagination.css" />
+<link rel="stylesheet" href="manywho/runtime/css/notifications.css" />
+<link rel="stylesheet" href="manywho/runtime/css/navigation.css" />
+<link rel="stylesheet" href="manywho/runtime/css/feed.css" />
+<link rel="stylesheet" href="manywho/runtime/css/files.css" />
+<link rel="stylesheet" href="manywho/runtime/css/debug.css" />
+<link rel="stylesheet" href="manywho/runtime/css/content.css" />
+<link rel="stylesheet" href="manywho/runtime/css/status.css" />
+<link rel="stylesheet" href="manywho/runtime/css/radio.css" />
+<link rel="stylesheet" href="manywho/runtime/css/returnToParent.css" />
+<link rel="stylesheet" href="manywho/runtime/css/history.css" />
+
+<script type="text/javascript" src="cordova.js"></script>
+<script src="manywho/runtime/js/vendor/jquery.min.js"></script>
+<script src="manywho/runtime/js/vendor/bootstrap.min.js"></script>
+<script src="manywho/runtime/js/vendor/react.min.js"></script>
+<script src="manywho/runtime/js/vendor/socket.io-1.3.2.js"></script>
+<script src="manywho/runtime/js/vendor/moment-with-locales.min.js"></script>
+<script src="manywho/runtime/js/vendor/loglevel.min.js"></script>
+
+<script>
+
+	var manywho = {
+		cdnUrl: '',
+		initialize: function () {
+
+            var backendUri = 'https://flow.manywho.com';
+			var manywhoAdminTenantId = 'da497693-4d02-45db-bc08-8ea16d2ccbdf';
+
+			// Values specific to the flow
+			var tenantId = 'bfce47ee-99f5-4267-ad53-b79bff9932fd';
+			var flowId = 'bda203d4-c200-49ef-ae8a-b56d6549fd3b';
+
+			manywho.settings.initialize({
+				adminTenantId: manywhoAdminTenantId,
+				playerUrl: backendUri + '/' + tenantId + 'play/default',
+				joinUrl: backendUri + '/' + tenantId + 'play/default',
+				platform: {
+					uri: backendUri
+				}
+			});
+
+			var options = {
+				authentication: {
+					sessionId: null,
+					sessionUrl: null
+				},
+				navigationElementId: null,
+				mode: null,
+				reportingMode: null,
+				trackLocation: false,
+				replaceUrl: false,
+				collaboration: {
+					isEnabled: false
+				},
+				autoFocusInput: true,
+				inputs: null,
+				annotations: null,
+				navigation: {
+					isFixed: true,
+					isWizard: false
+				},
+				callbacks: [],
+				collapsible: false,
+				history: null,
+				theme: null
+			};
+
+			manywho.log.enableAll();
+
+			manywho.engine.initialize(
+					tenantId,
+					flowId,
+					null,
+					'main',
+					null,
+					null,
+					options,
+					null
+			);
+
+		}
+	};
+</script>
+
+<script src="manywho/runtime/js/lib/react-dropzone.js"></script>
+<script src="manywho/runtime/js/lib/datetimepicker.js"></script>
+<script src="manywho/runtime/js/lib/jquery.plugins.js"></script>
+<script src="manywho/runtime/js/lib/jquery.textcomplete.js"></script>
+<script src="manywho/runtime/js/lib/classNames.js"></script>
+<script src="manywho/runtime/js/lib/react-input-autosize.js"></script>
+<script src="manywho/runtime/js/lib/react-select.js"></script>
+
+<script src="manywho/runtime/js/services/ajax.js"></script>
+<script src="manywho/runtime/js/services/model.js"></script>
+<script src="manywho/runtime/js/services/component.js"></script>
+<script src="manywho/runtime/js/services/styling.js"></script>
+<script src="manywho/runtime/js/services/collaboration.js"></script>
+<script src="manywho/runtime/js/services/state.js"></script>
+<script src="manywho/runtime/js/services/engine.js"></script>
+<script src="manywho/runtime/js/services/theming.js"></script>
+<script src="manywho/runtime/js/services/settings.js"></script>
+<script src="manywho/runtime/js/services/json.js"></script>
+<script src="manywho/runtime/js/services/utils.js"></script>
+<script src="manywho/runtime/js/services/authorization.js"></script>
+<script src="manywho/runtime/js/services/callbacks.js"></script>
+<script src="manywho/runtime/js/services/social.js"></script>
+<script src="manywho/runtime/js/services/log.js"></script>
+
+<script src="manywho/runtime/js/components/mixins.js"></script>
+<script src="manywho/runtime/js/components/main.js"></script>
+<script src="manywho/runtime/js/components/navigation.js"></script>
+<script src="manywho/runtime/js/components/group.js"></script>
+<script src="manywho/runtime/js/components/inline.js"></script>
+<script src="manywho/runtime/js/components/vertical.js"></script>
+<script src="manywho/runtime/js/components/horizontal.js"></script>
+<script src="manywho/runtime/js/components/presentation.js"></script>
+<script src="manywho/runtime/js/components/input.js"></script>
+<script src="manywho/runtime/js/components/textarea.js"></script>
+<script src="manywho/runtime/js/components/content.js"></script>
+<script src="manywho/runtime/js/components/outcome.js"></script>
+<script src="manywho/runtime/js/components/select.js"></script>
+<script src="manywho/runtime/js/components/table-container.js"></script>
+<script src="manywho/runtime/js/components/table-large.js"></script>
+<script src="manywho/runtime/js/components/table-small.js"></script>
+<script src="manywho/runtime/js/components/feed.js"></script>
+<script src="manywho/runtime/js/components/pagination.js"></script>
+<script src="manywho/runtime/js/components/wait.js"></script>
+<script src="manywho/runtime/js/components/modal.js"></script>
+<script src="manywho/runtime/js/components/notifications.js"></script>
+<script src="manywho/runtime/js/components/file-upload.js"></script>
+<script src="manywho/runtime/js/components/debug.js"></script>
+<script src="manywho/runtime/js/components/status.js"></script>
+<script src="manywho/runtime/js/components/voting.js"></script>
+<script src="manywho/runtime/js/components/image.js"></script>
+<script src="manywho/runtime/js/components/returnToParent.js"></script>
+<script src="manywho/runtime/js/components/radio.js"></script>
+<script src="manywho/runtime/js/components/history.js"></script>
+
+<!-- Extensions -->
+<script src="js/cordova-plugin-geolocation.js"></script>
+<script src="js/phonegap-plugin-barcodescanner.js"></script>
+<!-- Extensions -->
+
+<script>
+	manywho.initialize();
+</script>
+</body>
+</html>
